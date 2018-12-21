@@ -2,8 +2,8 @@
 
 To implement a simple TODO web app. Here are the list of functions the app needs to support:
 
-POST /v1/notes/create - create a note
-GET /v1/notes - get the list of notes
+POST /v1/notes/create - create a note \n
+GET /v1/notes - get the list of notes \n
 GET /v1/notes/{note_id} - get a specific note
 PATCH /v1/notes/{note_id} - Update a specific note
 DEL /v1/notes/{note_id} - Delete a specific note
