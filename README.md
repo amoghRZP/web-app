@@ -10,3 +10,6 @@ To implement a simple TODO web app. Here are the list of functions the app needs
 - DEL /v1/notes - delete all notes
 
 Every note has the following attributes: note_name, note_details, note_created_at, note_updated_at.
+
+
+For each of the above routes, A simple basic auth via the header. To validate the auth we are using a custom middleware.
