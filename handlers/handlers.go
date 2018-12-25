@@ -8,11 +8,11 @@ import (
 	"time"
 )
 
-func GetHome (c *gin.Context){
+func GetHome(c *gin.Context) {
 	c.String(200, "Welcome to Notes !!")
 }
 
-func CreateNotes (c *gin.Context){
+func CreateNotes(c *gin.Context) {
 
 	var notes models.Notes
 	c.BindJSON(&notes)
@@ -24,7 +24,7 @@ func CreateNotes (c *gin.Context){
 	c.JSON(200, notes)
 }
 
-func GetNotes (c *gin.Context){
+func GetNotes(c *gin.Context) {
 	var notes []models.Notes
 	if err := dbconfig.DB.Find(&notes).Error; err != nil {
 		c.AbortWithStatus(404)
@@ -34,7 +34,7 @@ func GetNotes (c *gin.Context){
 	}
 }
 
-func GetNoteById (c *gin.Context){
+func GetNoteById(c *gin.Context) {
 
 	id := c.Params.ByName("id")
 	var notes models.Notes
@@ -46,15 +46,14 @@ func GetNoteById (c *gin.Context){
 	}
 }
 
-
-func UpdateNoteById (c *gin.Context){
+func UpdateNoteById(c *gin.Context) {
 
 	id := c.Params.ByName("id")
 	var notes models.Notes
-	if err:= dbconfig.DB.Where("id = ?", id).First(&notes).Error; err!=nil {
+	if err := dbconfig.DB.Where("id = ?", id).First(&notes).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
-	} else{
+	} else {
 		c.BindJSON(&notes)
 	}
 	t := time.Now()
@@ -65,7 +64,7 @@ func UpdateNoteById (c *gin.Context){
 
 }
 
-func DeleteNoteById (c *gin.Context){
+func DeleteNoteById(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var notes models.Notes
 	d := dbconfig.DB.Where("id = ?", id).Delete(&notes)
@@ -73,7 +72,7 @@ func DeleteNoteById (c *gin.Context){
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
 
-func DeleteNotes (c *gin.Context){
+func DeleteNotes(c *gin.Context) {
 	var notes []models.Notes
 	d := dbconfig.DB.Delete(&notes)
 	fmt.Println(d)
